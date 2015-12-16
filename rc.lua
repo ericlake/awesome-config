@@ -107,7 +107,7 @@ end
 
 tags = {
     names = { "main", "firefox", "chrome", "code", "irc", "vidyo", 7, 8, 9 },
-    layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2],
+    layout = { layouts[1], layouts[2], layouts[2], layouts[2], layouts[2],
                layouts[1], layouts[1], layouts[1], layouts[1] }
 }
 for s = 1, screen.count() do
@@ -213,6 +213,26 @@ vicious.register(volumeicon, vicious.widgets.volume, function(widget, args)
     end
 
 end, 10, "Master")
+
+--{{---| Keyboard widget |----------
+-- Keyboard map indicator and changer
+kbdcfg = {}
+kbdcfg.cmd = "setxkbmap"
+kbdcfg.layout = { { "us", "" , "US" }, { "us", "dvorak" , "DV" } } 
+kbdcfg.current = 1  -- us is our default layout
+kbdcfg.widget = wibox.widget.textbox()
+kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][3] .. " ")
+kbdcfg.switch = function ()
+  kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+  local t = kbdcfg.layout[kbdcfg.current]
+  kbdcfg.widget:set_text(" " .. t[3] .. " ")
+  os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+end
+
+ -- Mouse bindings
+kbdcfg.widget:buttons(
+ awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
+)
 
 --{{---| CPU / sensors widget |-----------
 cpuwidget = wibox.widget.textbox()
@@ -323,6 +343,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(kbdcfg.widget)
     --right_layout:add(arr9)
     --right_layout:add(mailicon)
     right_layout:add(arr8)
