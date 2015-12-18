@@ -44,7 +44,7 @@ end
 
 -- Todo:  Please change the "ep" to your $USER
 config_dir = (os.getenv("HOME") .. "/.config/awesome/")
-themes_dir = (config_dir .. "/powerarrowf")
+themes_dir = (config_dir .. "themes/powerarrowf")
 
 beautiful.init(themes_dir .. "/theme.lua")
 
@@ -216,6 +216,7 @@ end, 10, "Master")
 
 --{{---| Keyboard widget |----------
 -- Keyboard map indicator and changer
+-- grabbed from http://awesome.naquadah.org/wiki/Change_keyboard_maps#rc.lua_code
 kbdcfg = {}
 kbdcfg.cmd = "setxkbmap"
 kbdcfg.layout = { { "us", "" , "US" }, { "us", "dvorak" , "DV" } } 
@@ -411,6 +412,10 @@ awful.key({ "Control", "Shift"}, "f", function() awful.util.spawn("firefox") end
 
 awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xlock -mode matrix") end),
 
+-- {{ Launch Nautilus }} --
+
+awful.key({ "Control", "Shift" }, "n", function() awful.util.spawn("nautilus") end),
+
 -- {{ Spawns Atom }} --
 
 awful.key({ "Control", "Shift"}, "a", function() awful.util.spawn("atom") end),
@@ -562,11 +567,7 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
+    { rule = { class = "MPlayer", "pinentry", "gimp", "Guake" },
       properties = { floating = true } },
     { rule = { class = "Pidgin" },
       properties = { floating = true } },
@@ -574,17 +575,17 @@ awful.rules.rules = {
       properties = { floating = true } },
     -- Hangouts should always float
     { rule = { instance = "crx_nckgahadagoaajjgafhacjanaoiihapd" },
-      properties = { floating = true } },
-      -- callback = function(c)
+      properties = { floating = true },
+      callback = function(c)
         -- Show to titlebar else you may not know who you're talking with.
-        -- awful.titlebar.add(c, { modkey = modkey })
-    -- end },
+        awful.titlebar(c, { modkey = modkey })
+      end },
     -- Set Firefox to always map on tags number 2 of screen 1.
     { rule = { class = "Firefox" },
-      properties = { tag = tags[1][2] , switchtotag = true } },
+      properties = { tag = tags[1][2] } }, --, switchtotag = true } },
     -- Set Chrome to always map on tags number 3 of screen 1.
     { rule = { class = "google-chrome" },
-      properties = { tag = tags[1][3] , switchtotag = true } },
+      properties = { tag = tags[1][3] } }, --, switchtotag = true } },
     -- Set Atom to always map on tags number 3 of screen 1.
     { rule = { class = "Atom" },
       properties = { tag = tags[1][4] , switchtotag = true } },
