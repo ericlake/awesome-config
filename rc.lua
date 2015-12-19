@@ -410,7 +410,8 @@ awful.key({ "Control", "Shift"}, "f", function() awful.util.spawn("firefox") end
 
 -- {{ Lock screen }} --
 
-awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xlock -mode matrix") end),
+--awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xlock -mode matrix") end),
+awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xlock") end),
 
 -- {{ Launch Nautilus }} --
 
@@ -419,6 +420,9 @@ awful.key({ "Control", "Shift" }, "n", function() awful.util.spawn("nautilus") e
 -- {{ Spawns Atom }} --
 
 awful.key({ "Control", "Shift"}, "a", function() awful.util.spawn("atom") end),
+
+-- {{ Take a Screenshot }} --
+awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/ 2>/dev/null'") end),
 
 -- {{ Volume Control }} --
 

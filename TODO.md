@@ -4,3 +4,6 @@
 * Do some clean up on the theme
  * Moved theme to themes dir and corrected paths.
 * Find a way to easily switch themes
+
+* Possibly switch to the powerarrow-dark theme from esn89
+
