@@ -6,5 +6,3 @@
 * Find a way to easily switch themes
 
 * Possibly switch to the powerarrow-dark theme from esn89
-* Find a sane way to get the wallpaper to change throughout the day. Possibly with a cron and feh.
-

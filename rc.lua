@@ -404,9 +404,9 @@ awful.key({ "Control", "Shift"}, "c", function() awful.util.spawn("google-chrome
 
 awful.key({ "Control", "Shift"}, "f", function() awful.util.spawn("firefox") end),
 
--- {{ Shuts down Computer }} --
+-- {{ Lock and suspend }} --
 
---awful.key({ "Control",        }, "Escape", function() awful.util.spawn("systemctl poweroff") end),
+awful.key({ "Control",        }, "Escape", function() awful.util.spawn("xlock & systemctl suspend") end),
 
 -- {{ Lock screen }} --
 
