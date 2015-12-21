@@ -415,7 +415,7 @@ awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xlock") end),
 
 -- {{ Launch Nautilus }} --
 
-awful.key({ "Control", "Shift" }, "n", function() awful.util.spawn("nautilus") end),
+awful.key({ "Control", "Shift" }, "n", function() awful.util.spawn("thunar") end),
 
 -- {{ Spawns Atom }} --
 
