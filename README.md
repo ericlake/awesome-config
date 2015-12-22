@@ -40,3 +40,4 @@ sudo dnf install awesome awesome-doc vicious xlockmore system-config-printer scr
 * python-pip
 * python-requests
 * tmux
+* nm-applet
