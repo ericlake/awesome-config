@@ -78,7 +78,7 @@ theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/def
 theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = backgrounds_dir .. "/batman.jpg"
+-- theme.wallpaper = backgrounds_dir .. "/batman.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_floating  = themes_dir .. "powerarrowf/layouts/floating.png"

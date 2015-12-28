@@ -406,7 +406,8 @@ awful.key({ "Control", "Shift"}, "f", function() awful.util.spawn("firefox") end
 
 -- {{ Lock and suspend }} --
 
-awful.key({ "Control",        }, "Escape", function() awful.util.spawn("xlock & systemctl suspend") end),
+--awful.key({ "Control",        }, "Escape", function() awful.util.spawn("xlock & systemctl suspend") end),
+awful.key({ "Control",        }, "Escape", function() os.execute("xlock & systemctl suspend") end),
 
 -- {{ Lock screen }} --
 
@@ -576,6 +577,8 @@ awful.rules.rules = {
     { rule = { class = "Pidgin" },
       properties = { floating = true } },
     { rule = { name = "Terminator Preferences" },
+      properties = { floating = true } },
+    { rule = { name = "galculator" },
       properties = { floating = true } },
     -- Hangouts should always float
     { rule = { instance = "crx_nckgahadagoaajjgafhacjanaoiihapd" },
