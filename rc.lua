@@ -53,6 +53,7 @@ terminal = "terminator"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "chromium"
+screenlocker = "xlock"
 
 font = "Inconsolata 11"
 
@@ -106,7 +107,7 @@ end
 -- }}}
 
 tags = {
-    names = { "main", "firefox", "chrome", "code", "irc", "vidyo", 7, 8, 9 },
+    names = { "main", "firefox", "chrome", "mail", "code", "irc", "vidyo", 8, 9 },
     layout = { layouts[1], layouts[2], layouts[2], layouts[2], layouts[2],
                layouts[1], layouts[1], layouts[1], layouts[1] }
 }
@@ -407,12 +408,12 @@ awful.key({ "Control", "Shift"}, "f", function() awful.util.spawn("firefox") end
 -- {{ Lock and suspend }} --
 
 --awful.key({ "Control",        }, "Escape", function() awful.util.spawn("xlock & systemctl suspend") end),
-awful.key({ "Control",        }, "Escape", function() os.execute("xlock & systemctl suspend") end),
+awful.key({ "Control",        }, "Escape", function() os.execute(screenlocker .. " & systemctl suspend") end),
 
 -- {{ Lock screen }} --
 
 --awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xlock -mode matrix") end),
-awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xlock") end),
+awful.key({ modkey, "Control" }, "l", function() awful.util.spawn_with_shell(screenlocker) end),
 
 -- {{ Launch Nautilus }} --
 
@@ -588,17 +589,17 @@ awful.rules.rules = {
         awful.titlebar(c, { modkey = modkey })
       end },
     -- Set Firefox to always map on tags number 2 of screen 1.
-    { rule = { class = "Firefox" },
-      properties = { tag = tags[1][2] } }, --, switchtotag = true } },
+    -- { rule = { class = "Firefox" },
+    --   properties = { tag = tags[1][2] } }, --, switchtotag = true } },
     -- Set Chrome to always map on tags number 3 of screen 1.
-    { rule = { class = "google-chrome" },
-      properties = { tag = tags[1][3] } }, --, switchtotag = true } },
+    -- { rule = { class = "google-chrome" },
+    --   properties = { tag = tags[1][3] } }, --, switchtotag = true } },
     -- Set Atom to always map on tags number 3 of screen 1.
-    { rule = { class = "Atom" },
-      properties = { tag = tags[1][4] , switchtotag = true } },
+    -- { rule = { class = "Atom" },
+    --   properties = { tag = tags[1][4] , switchtotag = true } },
     -- Set Vidyo to always map on tags number 6 of screen 1.
-    { rule = { class = "Vidyo" },
-      properties = { tag = tags[1][6] } },
+    -- { rule = { class = "Vidyo" },
+    --   properties = { tag = tags[1][6] } },
 }
 -- }}}
 
