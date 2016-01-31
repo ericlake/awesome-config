@@ -54,6 +54,7 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 browser = "chromium"
 screenlocker = "xlock"
+mailclient = "evolution"
 
 font = "Inconsolata 11"
 
@@ -108,7 +109,7 @@ end
 
 tags = {
     names = { "main", "firefox", "chrome", "mail", "code", "irc", "vidyo", 8, 9 },
-    layout = { layouts[1], layouts[2], layouts[2], layouts[2], layouts[2],
+    layout = { layouts[1], layouts[2], layouts[2], layouts[1], layouts[2],
                layouts[1], layouts[1], layouts[1], layouts[1] }
 }
 for s = 1, screen.count() do
@@ -403,7 +404,7 @@ awful.key({ "Control", "Shift"}, "c", function() awful.util.spawn("google-chrome
 
 -- {{ Opens Firefox }} --
 
-awful.key({ "Control", "Shift"}, "f", function() awful.util.spawn("firefox") end),
+awful.key({ "Control", "Shift"}, "b", function() awful.util.spawn("firefox") end),
 
 -- {{ Lock and suspend }} --
 
@@ -415,9 +416,13 @@ awful.key({ "Control",        }, "Escape", function() os.execute(screenlocker ..
 --awful.key({ modkey, "Control" }, "l", function() awful.util.spawn("xlock -mode matrix") end),
 awful.key({ modkey, "Control" }, "l", function() awful.util.spawn_with_shell(screenlocker) end),
 
--- {{ Launch Nautilus }} --
+-- {{ Launch Thunar }} --
 
-awful.key({ "Control", "Shift" }, "n", function() awful.util.spawn("thunar") end),
+awful.key({ "Control", "Shift" }, "f", function() awful.util.spawn("thunar") end),
+
+-- {{ Launch Mail Client }} --
+
+awful.key({ modkey, "Shift" }, "e", function() awful.util.spawn(mailclient) end),
 
 -- {{ Spawns Atom }} --
 
